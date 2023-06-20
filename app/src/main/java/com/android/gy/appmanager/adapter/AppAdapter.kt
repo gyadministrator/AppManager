@@ -21,6 +21,7 @@ import com.android.gy.appmanager.databinding.LayoutAppItemBinding
 import com.android.gy.appmanager.util.AppUtils
 import com.android.gy.appmanager.util.ApplySigningUtils
 import java.io.File
+import java.lang.StringBuilder
 import java.math.BigDecimal
 
 /*     
@@ -53,7 +54,8 @@ class AppAdapter(
         var tvPackage: TextView
         var tvSize: TextView
         var tvSign: TextView
-        var tvStore: TextView
+        var ivStore: ImageView
+        var ivSystem: ImageView
         var tvProcess: TextView
         var tvVersion: TextView
         var tvSha1: TextView
@@ -67,7 +69,8 @@ class AppAdapter(
             this.tvPackage = binding.tvPackage
             this.tvSize = binding.tvSize
             this.tvSign = binding.tvSign
-            this.tvStore = binding.tvStore
+            this.ivStore = binding.ivStore
+            this.ivSystem = binding.ivSystem
             this.tvProcess = binding.tvProcess
             this.tvVersion = binding.tvVersion
             this.tvSha1 = binding.tvSha1
@@ -105,23 +108,21 @@ class AppAdapter(
         val formatSize = getFormatSize(length.toDouble())
         holder.tvSize.text = "大小: $formatSize"
 
-        val stringBuilder = StringBuilder()
         //判断是否安装在外存
         val flags = applicationInfo.flags
         //判断是否是系统应用
         if ((flags and ApplicationInfo.FLAG_SYSTEM) == ApplicationInfo.FLAG_SYSTEM) {
-            stringBuilder.append("系统应用")
+            //系统应用
+            holder.ivSystem.visibility = View.VISIBLE
         } else {
-            stringBuilder.append("非系统应用")
+            holder.ivSystem.visibility = View.GONE
         }
         if ((flags and ApplicationInfo.FLAG_EXTERNAL_STORAGE) == ApplicationInfo.FLAG_EXTERNAL_STORAGE) {
-            stringBuilder.append("\t\t")
-            stringBuilder.append("外置存储空间")
+            //外置存储空间
+            holder.ivStore.setImageResource(R.mipmap.sdcard)
         } else {
-            stringBuilder.append("\t\t")
-            stringBuilder.append("内置存储空间")
+            holder.ivStore.setImageResource(R.mipmap.phone)
         }
-        holder.tvStore.text = stringBuilder.toString()
 
         holder.tvProcess.text = "进程: ${applicationInfo.processName}"
 
@@ -138,6 +139,7 @@ class AppAdapter(
         val sHA1 = ApplySigningUtils.sHA1(holder.tvSha1.context, applicationInfo.packageName)
         holder.tvSha1.text = "SHA1: $sHA1"
 
+        val stringBuilder = StringBuilder()
         stringBuilder.clear()
         stringBuilder.append(applicationInfo.packageName)
         stringBuilder.append("\t\t")

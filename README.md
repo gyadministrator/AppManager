@@ -1,6 +1,6 @@
 # wy_news 1984629668@qq.com
 
-[下载app体验](https://github.com/gyadministrator/wy_news/releases/download/v1.0/wy_news_normalRelease_v1.0_product_20230610_1511.apk)
+[下载app体验](https://github.com/gyadministrator/AppManager/releases/download/1.0/release_v1.0_20230620_2005.apk)
 
 app截图
 
