@@ -1,0 +1,88 @@
+import java.text.SimpleDateFormat
+
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+// 构建时间
+def buildTime = System.currentTimeMillis()
+
+android {
+    namespace 'com.android.gy.appmanager'
+    compileSdk 33
+
+    signingConfigs {
+        config {
+            storeFile file('../app_manager.jks')
+            storePassword 'gy123456'
+            keyAlias = 'android'
+            keyPassword 'gy123456'
+        }
+    }
+
+    defaultConfig {
+        applicationId "com.android.gy.appmanager"
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.config
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.config
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    android.applicationVariants.configureEach { variant ->
+        variant.outputs.configureEach {
+            // 自定义生成的apk名称
+            def dateFormat = new SimpleDateFormat("yyyyMMdd_HHmm")
+            def date = new Date(buildTime)
+            def dateStr = dateFormat.format(date)
+            outputFileName = "${variant.name}_v${variant.versionName}_${dateStr}.apk"
+        }
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    //刷新
+    //核心必须依赖
+    implementation 'io.github.scwang90:refresh-layout-kernel:2.0.5'
+    //经典刷新头
+    implementation 'io.github.scwang90:refresh-header-classics:2.0.5'
+    //经典加载
+    implementation 'io.github.scwang90:refresh-footer-classics:2.0.5'
+    //状态栏
+    implementation 'com.geyifeng.immersionbar:immersionbar:3.2.2'
+    //圆角
+    implementation 'com.makeramen:roundedimageview:2.2.1'
+}

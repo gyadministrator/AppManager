@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">App管理</string>
+    <string name="search_hint">请输入app名称/包名…</string>
+</resources>

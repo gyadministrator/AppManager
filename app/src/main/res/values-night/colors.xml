@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="main_bg_color">#151516</color>
+    <color name="main_title">#BEBEBE</color>
+    <color name="second_title">#949494</color>
+    <color name="bg_search_color">#282828</color>
+    <color name="bg_item_color">#181818</color>
+    <color name="bg_item_color_press">#80000000</color>
+</resources>
