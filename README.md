@@ -4,5 +4,5 @@
 
 app截图
 
-![image](https://github.com/gyadministrator/wy_news/blob/master/screenshot/Screenshot_1.png)
-![image](https://github.com/gyadministrator/wy_news/blob/master/screenshot/Screenshot_2.png)
+![image](https://github.com/gyadministrator/AppManager/blob/master/screenshot/Screenshot_1.png)
+![image](https://github.com/gyadministrator/AppManager/blob/master/screenshot/Screenshot_2.png)
