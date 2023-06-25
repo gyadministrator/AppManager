@@ -7,13 +7,14 @@
     android:background="@color/main_bg_color"
     tools:context=".activity.AppLoadingActivity">
 
-    <com.android.gy.appmanager.view.LoadingView
+    <com.android.gy.appmanager.view.CustomLoadingView
         android:id="@+id/loading_view"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:src="@mipmap/loading"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:loadingSize="16sp"
+        app:loadingText="@string/loading_more" />
 </androidx.constraintlayout.widget.ConstraintLayout>

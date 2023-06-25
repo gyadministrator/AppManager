@@ -5,6 +5,7 @@ import android.content.pm.PackageInfo
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
+import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,6 +26,7 @@ import kotlin.system.exitProcess
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), OnRefreshListener,
     OnLoadMoreListener, AppAdapter.OnAppItemListener {
     private lateinit var recyclerView: RecyclerView
+    private lateinit var rlLoading: RelativeLayout
     private lateinit var etSearch: ClearEditText
     private lateinit var adapter: AppAdapter
     private lateinit var refreshLayout: SmartRefreshLayout
@@ -41,6 +43,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), OnRefre
         etSearch = mBinding.etSearch
         recyclerView = mBinding.recycler
         refreshLayout = mBinding.refreshLayout
+        rlLoading = mBinding.rlLoading
         refreshLayout.setOnRefreshListener(this)
         refreshLayout.setOnLoadMoreListener(this)
         refreshLayout.setEnableLoadMore(false)
@@ -80,9 +83,11 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), OnRefre
 
             @SuppressLint("NotifyDataSetChanged")
             override fun onTextChange(text: String) {
+                rlLoading.visibility = View.VISIBLE
                 searchKey = text
                 appList.clear()
                 mViewModel.filterApp(text, GlobalConstant.appInfo)
+                rlLoading.visibility = View.GONE
             }
         })
     }

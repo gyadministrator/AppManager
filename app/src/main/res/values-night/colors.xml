@@ -6,4 +6,5 @@
     <color name="bg_search_color">#282828</color>
     <color name="bg_item_color">#181818</color>
     <color name="bg_item_color_press">#80000000</color>
+    <color name="load_color">#73000000</color>
 </resources>

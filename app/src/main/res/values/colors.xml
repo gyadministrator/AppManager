@@ -8,4 +8,5 @@
     <color name="bg_search_color">#EDF1F4</color>
     <color name="bg_item_color">#FFFFFF</color>
     <color name="bg_item_color_press">#1A000000</color>
+    <color name="load_color">#70ffffff</color>
 </resources>

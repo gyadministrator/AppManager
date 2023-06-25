@@ -1,19 +1,20 @@
 package com.android.gy.appmanager.activity
 
 import android.content.Intent
+import android.view.View
 import com.android.gy.appmanager.activity.base.BaseActivity
 import com.android.gy.appmanager.databinding.ActivityAppLoadingBinding
 import com.android.gy.appmanager.util.AppUtils
 import com.android.gy.appmanager.util.TaskUtil
+import com.android.gy.appmanager.view.CustomLoadingView
 import com.android.gy.appmanager.view.LoadingView
 import com.android.gy.appmanager.viewmodel.AppLoadingViewModel
 
 class AppLoadingActivity : BaseActivity<ActivityAppLoadingBinding, AppLoadingViewModel>() {
-    private lateinit var loadingView: LoadingView
+    private lateinit var loadingView: CustomLoadingView
 
     override fun initView() {
         loadingView = mBinding.loadingView
-        loadingView.startLoadingAnim()
     }
 
     override fun initData() {
@@ -40,7 +41,7 @@ class AppLoadingActivity : BaseActivity<ActivityAppLoadingBinding, AppLoadingVie
         mViewModel.getIsFinish().observe(this) {
             if (it) {
                 TaskUtil.runOnUiThread({
-                    loadingView.stopLoadingAnim()
+                    loadingView.visibility = View.GONE
                     val intent = Intent(mActivity, MainActivity::class.java)
                     startActivity(intent)
                     finish()
